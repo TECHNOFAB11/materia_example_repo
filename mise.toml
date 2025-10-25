@@ -1,0 +1,18 @@
+[tools]
+sops = "latest"
+
+[env]
+SOPS_AGE_KEY_FILE = "./key.txt"
+
+[vars]
+AGEKEY = "age1s2sc3dz0vrcmungswpxwnett7ayvzmfuke8vw0w3te36l742kpqs6kg606"
+
+[tasks]
+[tasks.encrypt]
+dir = "attributes"
+run = """
+  for file in $(find . -path "*/secrets/*.yml" ! -name "*.enc.yml"); do
+    echo "encrypting $file"
+    sops encrypt --age {{vars.AGEKEY}} $file > $(dirname $file)/$(basename $file .yml).enc.yml
+  done
+"""

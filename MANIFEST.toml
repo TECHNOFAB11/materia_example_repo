@@ -1,0 +1,8 @@
+[hosts]
+[hosts.localhost]
+components = ["freshrss"]
+roles = ["base"]
+
+[roles]
+[roles.base]
+components = ["podman_exporter"]
