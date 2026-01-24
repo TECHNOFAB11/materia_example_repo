@@ -16,3 +16,13 @@ run = """
     sops encrypt --age {{vars.AGEKEY}} $file > $(dirname $file)/$(basename $file .yml).enc.yml
   done
 """
+
+[tasks.build-image]
+usage = """
+arg "name" help= "Image name and tag to build"
+"""
+run = """
+  CONTAINER=$(buildah from scratch)
+  buildah copy $CONTAINER . /
+  buildah commit $CONTAINER {{usage.name}} 
+"""

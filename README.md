@@ -30,3 +30,6 @@ podman run --name materia --rm \
 
 5. That's it! You should now see `freshrss` and `podman_exporter` running in `podman ps` and `systemctl list-units` on the target host.
 
+## To use as an oci image source
+
+There's a mise task to create a basic OCI image from this repository. Simply run `mise r build-image IMAGENAME`, where "IMAGENAME" is the full name of the image to be pushed i.e. ghcr.io/stryan/materia-example-repo:latest.
